@@ -37,13 +37,14 @@ export default function PaginaInicial() {
     //const username = 'marlonj88';
     const [username, setUsername] = React.useState('marlonj88');
     const roteamento = useRouter();
+    const img = ['url(/637727.png)', 'url(/637709.jpg)', 'url(/637701.jpg)', 'url(/637689.jpg)', 'url(/637684.jpg)', 'url(/637679.jpg)', 'url(/401059.png)', 'url(/85327.png)']
 
     return (
         <>
             <Box
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    backgroundImage: 'url(/fundo.png)',
+                    backgroundImage: img[Math.floor(Math.random() * 8)],
                     backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 }}
             >
