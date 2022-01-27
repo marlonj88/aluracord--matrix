@@ -1,10 +1,10 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
+import axios from 'axios';
 
 function Titulo(props) {
-    console.log(props.children);
     const Tag = props.tag || 'h1';
     return (
         <>
@@ -37,14 +37,27 @@ export default function PaginaInicial() {
     //const username = 'marlonj88';
     const [username, setUsername] = React.useState('marlonj88');
     const roteamento = useRouter();
+    const [img1, setImg1] = React.useState(0)
     const img = ['url(/637727.png)', 'url(/637709.jpg)', 'url(/637701.jpg)', 'url(/637689.jpg)', 'url(/637684.jpg)', 'url(/637679.jpg)', 'url(/401059.png)', 'url(/85327.png)']
-
+    const randomImg = function () {
+        return setImg1((prev) => (prev + [Math.floor(Math.random() * 8)]) % img.length)
+    }
+    /* async function github() {
+        const api = axios.create({baseUrl: 'https://github.com'})
+        await api.get(`https://github.com/${username}.png`)
+    }
+    try {
+        github()
+    } catch (error) {
+        console.log(error)
+    }
+ */
     return (
         <>
             <Box
                 styleSheet={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    backgroundImage: img[Math.floor(Math.random() * 8)],
+                    backgroundImage: img[img1],
                     backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundBlendMode: 'multiply',
                 }}
             >
@@ -94,11 +107,7 @@ export default function PaginaInicial() {
                         /> */}
                         <TextField
                             value={username}
-                            onChange={function handler() {
-                                console.log('usuario digitou', event.target.value);
-                                const valor = event.target.value;
-                                setUsername(valor);
-                            }}
+                            onChange={ (e) => setUsername(e.target.value) }
                             fullWidth
                             textFieldColors={{
                                 neutral: {
@@ -112,6 +121,17 @@ export default function PaginaInicial() {
                         <Button
                             type='submit'
                             label='Entrar'
+                            fullWidth
+                            buttonColors={{
+                                contrastColor: appConfig.theme.colors.neutrals["000"],
+                                mainColor: appConfig.theme.colors.primary[500],
+                                mainColorLight: appConfig.theme.colors.primary[400],
+                                mainColorStrong: appConfig.theme.colors.primary[600],
+                            }}
+                        />
+                        <Button
+                            label='Background'
+                            onClick={randomImg}
                             fullWidth
                             buttonColors={{
                                 contrastColor: appConfig.theme.colors.neutrals["000"],
