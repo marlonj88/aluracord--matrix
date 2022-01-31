@@ -158,7 +158,7 @@ function MessageList(props) {
             {props.mensagem.map((mensagem) => {
                 return (
                     <Text
-                        key={mensagem.id}
+                        // key={mensagem.id}
                         tag="li"
                         styleSheet={{
                             borderRadius: '5px',
