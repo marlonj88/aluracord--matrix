@@ -1,8 +1,10 @@
 import { Box, Button, Text, TextField, Image } from '@skynexui/components';
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import appConfig from '../config.json';
-import axios from 'axios';
+import GlobalStyle from './_app'
+
+<GlobalStyle />
 
 function Titulo(props) {
     const Tag = props.tag || 'h1';

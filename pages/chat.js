@@ -7,12 +7,17 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5v
 const SUPABASE_URL = 'https://yaktfkhjuivhkppsatgz.supabase.co';
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+console.log(supabaseClient.from('mensagens'))
+
 export default function ChatPage() {
     const [mensagem, setMensagem] = React.useState('');
     const [listMensagem, setListMensagem] = React.useState([]);
     
     useEffect(() => {
-        supabaseClient.from('mensagens').select('*').then(({ data }) => {
+        supabaseClient.from('mensagens')
+        .select('*')
+        .order('id', { ascending: false })
+        .then(({ data }) => {
             console.log('Dados da consulta:', data);
             setListMensagem(data)
         });
@@ -31,7 +36,7 @@ export default function ChatPage() {
         ]).then((data) => {
             console.log('Criando mensagem:', data)
             setListMensagem([
-                data[0],
+                data.data[0],
                 ...listMensagem,
             ])
         })
@@ -76,13 +81,7 @@ export default function ChatPage() {
                 >
 
                     <MessageList mensagem={listMensagem} />
-                    {/* {listMensagem.map( mensagemAtual => {
-                        return (
-                            <li key={mensagemAtual.id}>
-                                {mensagemAtual.de}: {mensagemAtual.texto}
-                            </li>
-                        )
-                    })} */}
+
                     <Box
                         as="form"
                         styleSheet={{

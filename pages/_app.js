@@ -24,7 +24,22 @@ function GlobalStyle() {
           flex: 1;
         }
         /* ./App fit Height */ 
+
+        ::-webkit-scrollbar {
+          width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+          background: #212931; 
+        }
+         
+        ::-webkit-scrollbar-thumb {
+          background: #9AA5B1; 
+        }
+        
       `}</style>
+
+      
     );
 }
 
