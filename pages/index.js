@@ -40,7 +40,7 @@ export default function PaginaInicial() {
     const [img1, setImg1] = React.useState(0)
     const img = ['url(/637727.png)', 'url(/637709.jpg)', 'url(/637701.jpg)', 'url(/637689.jpg)', 'url(/637684.jpg)', 'url(/637679.jpg)', 'url(/401059.png)', 'url(/85327.png)']
     const randomImg = function () {
-        return setImg1((prev) => (prev + [Math.floor(Math.random() * 8)]) % img.length)
+        return setImg1((prev) => (prev + 1) % img.length)
     }
     /* async function github() {
         const api = axios.create({baseUrl: 'https://github.com'})
@@ -81,8 +81,8 @@ export default function PaginaInicial() {
                         as="form"
                         onSubmit={function (infosDoEvento) {
                             infosDoEvento.preventDefault();
-                            console.log('Alguém submeteu o form')
                             roteamento.push('/chat');
+                            window.username = username
                             // window.location.href = '/chat'
                         }}
                         styleSheet={{
@@ -95,7 +95,7 @@ export default function PaginaInicial() {
                             {appConfig.name}
                         </Text>
 
-                        {/* <input
+                        {/* {<input
                             type="text"
                             value={username}
                             onChange={function handler() {
@@ -138,6 +138,9 @@ export default function PaginaInicial() {
                                 mainColor: appConfig.theme.colors.primary[500],
                                 mainColorLight: appConfig.theme.colors.primary[400],
                                 mainColorStrong: appConfig.theme.colors.primary[600],
+                            }}
+                            styleSheet={{
+                                marginTop: '6px'
                             }}
                         />
                     </Box>
