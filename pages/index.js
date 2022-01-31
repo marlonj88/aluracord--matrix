@@ -83,8 +83,7 @@ export default function PaginaInicial() {
                         as="form"
                         onSubmit={function (infosDoEvento) {
                             infosDoEvento.preventDefault();
-                            roteamento.push('/chat');
-                            window.username = username
+                            roteamento.push(`/chat?username=${username}`);
                             // window.location.href = '/chat'
                         }}
                         styleSheet={{
